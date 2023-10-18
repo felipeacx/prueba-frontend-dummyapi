@@ -1,27 +1,40 @@
 import React from "react"
 
-const Pagination = ({ currentPage, setCurrentPage }: { currentPage: number; setCurrentPage: any }) => {
+const Pagination = ({
+  currentPage,
+  setCurrentPage,
+  total,
+}: {
+  currentPage: number
+  setCurrentPage: any
+  total: number
+}) => {
+  const itemsPerPage = 10
+  //Funciones para una paginación básica
   function backPage() {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1)
     }
   }
   function nextPage() {
-    if (currentPage < 999) {
+    if (currentPage < total / itemsPerPage - 1) {
       setCurrentPage(currentPage + 1)
     }
   }
+  // Primera página es 0 por defecto
   function firstPage() {
     if (currentPage !== 0) {
       setCurrentPage(0)
     }
   }
+  // Última página según la documentación de la API
   function lastPage() {
-    if (currentPage !== 999) {
-      setCurrentPage(998)
+    if (currentPage !== total / itemsPerPage) {
+      setCurrentPage(Math.ceil(total / itemsPerPage - 1))
     }
   }
 
+  //Mostrar navegación de la paginación
   return (
     <nav className="grid place-items-center">
       <ul className="flex gap-5">
@@ -40,7 +53,7 @@ const Pagination = ({ currentPage, setCurrentPage }: { currentPage: number; setC
         </li>
         <li className="page-item">
           <a onClick={lastPage} href="#" className="p-2 rounded hover:bg-blue-700 hover:font-bold hover:underline">
-            {"999"}
+            {Math.ceil(total / itemsPerPage)}
           </a>
         </li>
         <li className="page-item">

@@ -1,13 +1,13 @@
 import Footer from "@/components/Footer"
 import Header from "@/components/Header"
-import Home from "./Home"
+import Create from "./Create"
 
-// Layout del componente Home
-export default function HomeComponent() {
+// Layout del componente Create
+export default function CreateComponent() {
   return (
     <main className="bg-gray-100">
       <Header />
-      <Home />
+      <Create />
       <Footer />
     </main>
   )
